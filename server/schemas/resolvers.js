@@ -57,9 +57,14 @@ const resolvers = {
       const order = new Order({ products: args.products });
       const { products } = order.populate('products');
 
+      const singleProduct = Product.find()
+      console.log(singleProduct)
+
       const line_items = [];
 
       for (let i = 0; i < products.length; i++) {
+        console.log(products[i])
+        console.log(products[i].name)
         // generate product id
         const product = await stripe.products.create({
           name: products[i].name,
